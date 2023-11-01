@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>
+        {% block title %} {% endblock %}
+    </title>
+    <!-- Favicon icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="{% static 'plugins/sweetalert/css/sweetalert.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/myshop.css' %}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="{% static 'js/main.js' %}"> </script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+
+        <!--**********************************
+            Scripts
+        ***********************************-->
+    <script src="{% static 'plugins/common/common.min.js' %}"></script>
+    <script src="{% static 'js/plugins-init/morris-init.js' %}"></script>
+
+    <script src="{% static 'js/dashboard/dashboard-1.js'%}"></script>
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
+    <script src="{% static 'js/gleek.js' %}"></script>
+    <script src="{% static 'js/Chart.min.js' %}"></script>
+    <script src="{% static 'js/styleSwitcher.js' %}"></script>
+    <script src="{% static 'plugins/tables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'plugins/tables/js/datatable/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'plugins/tables/js/datatable-init/datatable-basic.min.js' %}"></script>
+    <script src="{% static 'plugins/sweetalert/js/sweetalert.min.js' %}"></script>
+    <script src="{% static 'plugins/sweetalert/js/sweetalert.init.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+   
+    <!-- <script src="{% static 'path/to/chart.min.js' %}"></script> -->
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    {% block script %} {% endblock script %}
+        
+    <script src="{% static 'js/product/main.js' %}"></script>
+    {% block extra_js_script %}
+    {% endblock extra_js_script %}
+    
+    <script src="{% static 'js/custom-js/dashboard-script.js'%}"></script>
+    <script src="{% static 'js/custom-js/order-script.js'%}"></script>
+    <script src="{% static 'js/custom-js/product-script.js'%}"></script>
+    {% block product_add_script %}  {% endblock product_add_script %}
+</head>
+<body>
+    {% block content %}  {% endblock content %}
+        <!--**********************************
+            Scripts
+        ***********************************-->
+    <!-- product add java script -->
+    <!-- get bootstarp js bundle -->
+</body>
+</html>

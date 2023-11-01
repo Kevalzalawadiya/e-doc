@@ -1,0 +1,62 @@
+{% extends 'document/dashboard.html' %}
+{% block title %} Received Document {% endblock%}
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Received Document </h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-secondary">Document Details</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                {%if shared_document %}
+                <table class="table table-bordered"  width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Sender Name </th>
+                            <th>View</th>
+                            <th>Edit</th>
+                            <th>Download</th>
+                        </tr>
+                    <tbody>
+                        {% for s in shared_document %}
+                        <tr>
+                        <td>{{ s.document.name }}</td>
+                        <td><div class="truncate-text">{{ s.document.description}}</div></td>
+                        <td>{{ s.receiver }}</td>
+                        <form method="POST" action="{% url 'document:permission' s.document.id %}">
+                            {% csrf_token %}
+                            {% if s.shared_doc_view %}
+                                <td><button type="submit" name="action" value="view" class="permission_btn"><i class="fas fa-eye"></i>  </button></td> 
+                            {% else %}
+                                <td> <i class="fas fa-window-close" style="color:red"> </td>
+                            {% endif %}
+
+                            {% if s.shared_doc_update %}
+                                <td><button type="submit" name="action" value="update" class="permission_btn" ><i class="fas fa-edit"></i></button></td>   
+                            {% else %}
+                                <td> <i class="fas fa-window-close" style="color:red"> </td>
+                            {% endif %}
+                            
+                            {% if s.shared_doc_download %}
+                                <td><button type="submit" name="action" value="download" class="permission_btn"><i class="fas fa-file-download"></i></button></td> 
+                            {% else %}
+                                <td> <i class="fas fa-window-close" style="color:red"> </td>
+                            {% endif %}
+                        </form>
+                        </tr>    
+                    {% endfor %} 
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+{% endblock content %}
+         

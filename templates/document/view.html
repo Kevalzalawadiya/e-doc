@@ -1,0 +1,68 @@
+{% extends 'document/dashboard.html' %}
+{% block title %} View Document {% endblock%}
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Document</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Collapsable Card Example -->
+            <div class="card shadow mb-4">
+                <!-- Card Header - Accordion -->
+                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+                    role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                    <h5 class="m-0 font-weight-bold text-secondary"> {{ doc.name }} </h5>
+                </a>
+                <!-- Card Content - Collapse -->
+                <div class="collapse show" id="collapseCardExample">
+                    <div class="card-body truncate-text">
+                        {{ doc.description }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Collapsable Card Example -->
+            <div class="card shadow mb-4">
+                <!-- Card Header - Accordion -->
+                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+                    role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                    <h5 class="m-0 font-weight-bold text-secondary">Version File </h5>
+                </a>
+                <!-- Card Content - Collapse -->
+                <div class="collapse show" id="collapseCardExample">
+                    <div class="card-body">
+                        <table class="table table-bordered"  width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                {% if versions %}
+                                    <th>Version</th>
+                                    <th>File</th>
+                                </tr> 
+                            <tbody>
+                                <tr>
+                                        {% for version in versions %}
+                                        <tr>
+                                        <td>{{ version.version }}</td>
+                                        <td><a href="{% url 'document:serve_document' version.id %}">{{ version.file.name }}</a></td>
+                                    </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        <td><p>Files are not available.</p></td>
+                                    {% endif %}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+{% endblock content %}
+      

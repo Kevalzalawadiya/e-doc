@@ -1,0 +1,68 @@
+{% extends 'document/dashboard.html' %}
+{% block title %} Edit Document {% endblock%}
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Document</h1>
+    </div>
+ <!-- Basic Card Example -->
+ <div class="row">
+ <div class="col-lg-9">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-secondary">Edit Existing Document</h6>
+        </div>
+        <div class="card-body">
+            <!-- === -->
+            <form  method="POST" action="{% url 'document:update_doc' doc.id %}">
+                {% csrf_token %}
+                <!-- <label for="name">Name &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; :</label> -->
+                <input type="text" class="form-control bg-gray-200 border-0 small" name="name" value="{{ doc.name }}"
+                    aria-label="Search" aria-describedby="basic-addon2"><br>
+                <!-- <label for="description">Description &nbsp;:</label> -->
+                <textarea class="form-control bg-gray-200 border-0 small truncate-text" name="description" value="{{doc.description }}" 
+                    aria-label="Search" aria-describedby="basic-addon2"></textarea><br>
+                    <button class="btn btn-secondary btn-icon-split text " type="submit">Save Change </button>
+                    
+              </form>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3">
+    <div class="card shadow mb-2">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-secondary">Add New Version</h6>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{% url 'document:document_version' doc.id %}" enctype="multipart/form-data"> 
+                {% csrf_token %}
+                  File : <input type="FILE" name="file" ><br><br>
+                  <button class="btn btn-secondary btn-icon-split text " type="submit">Add File </button>
+              </form>
+        </div>
+    </div>
+</div>
+</div>
+{% if doc.documentversion_set.all %}
+<table class="table table-bordered"  width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            <th><h3>Version &nbsp; &nbsp; &nbsp; &nbsp;</h3></th>
+            <th><h3>Added Version File</h3></th>
+            <th><h3>Download</h3></th>
+        </tr>
+    <tbody>
+        <tr>
+            {% for version in doc.documentversion_set.all %}
+            <tr>
+            <td>{{ version.version }}</td>
+            <td><a href="{% url 'document:serve_document' version.id %}" style="color: black; text-decoration: none;">{{ version.file.name }}</a></td>
+            <td><a href="{% url 'document:download_file'  version.file.path %}"><i class="fas fa-file-download"></i></a></td></tr>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+{% endif %}
+</div>
+{% endblock content %}

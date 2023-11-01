@@ -1,0 +1,39 @@
+{% extends 'document/dashboard.html' %}
+{% block title %} Shared Document {% endblock%}
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Document</h1>
+    </div>
+ <!-- Basic Card Example -->
+ <div class="row">
+ <div class="col-lg-6">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-secondary">Share Your Document</h6>
+        </div>
+        <div class="card-body">
+            <!-- === -->
+            <form method="POST">
+                {% csrf_token %}
+                    <div class="demo">
+                        <label>Share With &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label><select name='shared_user'> 
+                            {% for i in users%}
+                            <option value="{{i.id}}"> {{i.username}} </option>    
+                            {% endfor %}    
+                        </select><br><br>
+                    </div>
+                    <label>Give Permission  :</label><br>
+                        <input type="checkbox" name="shared_doc_view" value="shared_doc_view"> view  <br>
+                        <input type="checkbox" name="shared_doc_download" value="shared_doc_download"> download <br>
+                        <input type="checkbox" name="shared_doc_update" value="shared_doc_update"> update <br>
+                    <input type="submit"> 
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+{% endblock content %}
